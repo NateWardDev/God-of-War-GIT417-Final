@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+  /* Primary Colors */
+  --color-nordic-blue: #1e4d6b;
+  --color-gow-red: #8b1e1e;
+  --color-nornir-gold: #d4af37;
+  --color-raven-black: #0d0d0d;
+  --color-frost-white: #f5f5f5;
+
+  /* Earthy Accent Tones */
+  --color-stone-gray: #4a4a4a;
+  --color-earth-brown: #5a3e2b;
+  --color-moss-green: #556b2f;
+  --color-sand-beige: #c2b280;
+  --color-clay-terracotta: #b36a4c;
+
+  /* Typography */
+  --font-heading: "Cinzel Trajan", serif;
+  --font-subheading: "Cinzel", serif;
+  --font-body: "Lato", sans-serif;
+
+  /* Border Radius & Spacing UI */
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* Default Dark Mode Semantic Mapping */
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #1e4d6b;
+  --text-primary: #f5f5f5;
+  --text-muted: #c2b280;
+  --accent-primary: #8b1e1e;
+  --accent-gold: #d4af37;
+  --border-color: #5a3e2b;
+}
+
+[data-theme="light"] {
+  /* Light Mode Overrides */
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --text-primary: #0d0d0d;
+  --text-muted: #4a4a4a;
+  --accent-primary: #8b1e1e;
+  --accent-gold: #d4af37;
+  --border-color: #c2b280;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.content-wrapper {
+  max-width: 1500px;
+}
+
+/* font saves */
+.cinzel-decorative-regular {
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cinzel-decorative-bold {
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.cinzel-decorative-black {
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 900;
+  font-style: normal;
+}
