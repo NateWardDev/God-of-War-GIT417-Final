@@ -124,28 +124,87 @@
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+
+        <button class="site-theme-switch-btn">
+          <i class="fa-solid fa-sun active"></i>
+          <i class="fa-solid fa-moon"></i>
+        </button>
       </nav>
     </div>
 
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
-    <h1>Hello World</h1>
+    <header>
+      <div class="img-wrapper">
+        <picture class="active header-img-bg">
+          <source
+            media="(max-width: 768px)"
+            srcset="images/original-mobile.webp"
+          />
+          <img src="images/original.webp" alt="God of War (2018) Promo Image" />
+        </picture>
+
+        <picture class="header-img-bg">
+          <source
+            media="(max-width: 768px)"
+            srcset="images/ragnarok-mobile.webp"
+          />
+          <img
+            src="images/ragnarok.webp"
+            alt="God of War: Ragnarök Promo Image"
+          />
+        </picture>
+
+        <picture class="header-img-bg">
+          <source
+            media="(max-width: 768px)"
+            srcset="images/laufey-mobile.webp"
+          />
+          <img src="images/laufey.webp" alt="God of War: Laufey Promo Art" />
+        </picture>
+      </div>
+      <div class="content-container">
+        <div class="head-text-container">
+          <div class="active">
+            <h1 class="header-main-text">A NEW LAND. AN OLD GOD.</h1>
+          </div>
+          <div>
+            <h1 class="header-main-text">PROPHECY MUST BE BROKEN</h1>
+          </div>
+          <div>
+            <h1 class="header-main-text">HER STORY IS NOT OVER.</h1>
+          </div>
+        </div>
+        <div class="desc-text-container">
+          <div class="active">
+            <p class="header-text">
+              A new journey begins. Kratos and Atreus venture beyond their home
+              to fulfill a final wish, unaware of the gods and dangers that
+              await them.
+            </p>
+          </div>
+          <div>
+            <p class="header-text">
+              Fimbulwinter has come. Kratos and Atreus must defy prophecy as the
+              Nine Realms prepare for their final war.
+            </p>
+          </div>
+          <div>
+            <p class="header-text">
+              Before the journey began, there was Laufey. A giantess, mother,
+              and keeper of secrets whose legacy reaches far beyond her death.
+            </p>
+          </div>
+        </div>
+        <div class="buttons-container">
+          <button class="header-btn active original">God of War</button>
+          <button class="header-btn ragnarok">Ragnarok</button>
+          <button class="header-btn laufey">Laufey</button>
+        </div>
+        <div class="scroll-for-more">
+          <p>Scroll For More</p>
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+      </div>
+    </header>
     <!-- footer -->
     <footer>
       <div class="content-wrapper"></div>
