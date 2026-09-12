@@ -2,8 +2,8 @@
 
 :root {
   /* Primary Colors */
-  --color-nordic-blue: #1e4d6b;
-  --color-gow-red: #8b1e1e;
+  --color-nordic-blue: #1c5a7b;
+  --color-gow-red: #542021;
   --color-nornir-gold: #d4af37;
   --color-purple: #492747;
   --color-raven-black: #0d0d0d;
@@ -33,7 +33,7 @@
   --text-black: #000;
   --text-muted: #c2b280;
   --accent-red: #c61919;
-  --accent-blue: #1e4d6b;
+  --accent-blue: #30739d;
   --accent-gold: #d4af37;
   --border-color: #5a3e2b;
   --light-line: #ffffff30;
@@ -63,6 +63,13 @@ body {
 
 .content-wrapper {
   max-width: 1500px;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+section {
+  padding: 0 7rem;
 }
 
 .img-wrapper {
@@ -304,7 +311,6 @@ header {
     z-index: 1;
     position: absolute;
     inset: 0;
-    filter: brightness(0.8);
 
     /* fade on bottom */
     &::after {
@@ -313,15 +319,16 @@ header {
       inset: 0;
       background: linear-gradient(
         to top,
-        rgb(0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.75) 10%,
-        rgba(0, 0, 0, 0.5) 20%,
-        rgba(0, 0, 0, 0.25) 30%,
-        rgba(0, 0, 0, 0) 40%
+        #0d0d0d 5%,
+        #0d0d0dbf 15%,
+        #0d0d0d80 25%,
+        #0d0d0d40 35%,
+        #0d0d0d00 45%
       );
       pointer-events: none;
     }
     picture {
+      filter: brightness(0.8);
       position: absolute;
       inset: 0;
       opacity: 0;
@@ -420,6 +427,7 @@ header {
 
     /* controll buttons */
     .buttons-container {
+      overflow: hidden;
       position: relative;
       display: flex;
       border: 1px solid var(--light-line);
@@ -493,6 +501,143 @@ header {
   }
 }
 
+/* ----- story intro ----- */
+.story-intro {
+  text-align: center;
+  padding: 2.5rem 0;
+  p {
+    margin: auto auto;
+    max-width: 800px;
+  }
+}
+
+/* ----- story game cards ------ */
+.game-story-cards {
+  padding: 2.5rem 7rem;
+  .section-title {
+    margin-bottom: 1rem;
+  }
+  /* Card Layout Container */
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  /* Core Card Layout */
+  .card {
+    display: flex;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 350px;
+    /* Theme Backgrounds */
+    &.card-red {
+      background-color: var(--color-gow-red);
+
+      .img-wrapper::after {
+        background: linear-gradient(
+          to right,
+          var(--color-gow-red) 0%,
+          rgba(59, 27, 34, 0.8) 15%,
+          transparent 50%
+        );
+      }
+    }
+    &.card-blue {
+      background-color: var(--color-nordic-blue);
+
+      .img-wrapper::after {
+        background: linear-gradient(
+          to right,
+          var(--color-nordic-blue) 0%,
+          rgba(30, 45, 66, 0.8) 15%,
+          transparent 50%
+        );
+      }
+    }
+    &.card-purple {
+      background-color: var(--color-purple);
+
+      /* flip the image */
+      .img-wrapper {
+        img {
+          transform: scaleX(-1);
+        }
+      }
+      .img-wrapper::after {
+        background: linear-gradient(
+          to right,
+          var(--color-purple) 0%,
+          rgba(43, 29, 61, 0.8) 15%,
+          transparent 50%
+        );
+      }
+    }
+    /* Left Side: Content Box */
+    .card-content {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 2;
+      p {
+        padding-left: 0.5rem;
+      }
+    }
+
+    /* Right Side: Media Box */
+    .img-wrapper {
+      flex: 1.5;
+      position: relative;
+      overflow: hidden;
+
+      /* Visual Fade Masks using Nesting + Parent Reference */
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      picture {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Action Buttons */
+      .btn {
+        position: absolute;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+        font-weight: bold;
+        color: white;
+        z-index: 3;
+        transition: filter 0.2s ease-in-out;
+        filter: brightness(1.25);
+
+        &:hover {
+          filter: brightness(1.75);
+        }
+
+        &.btn-red {
+          background-color: var(--color-gow-red);
+        }
+        &.btn-blue {
+          background-color: var(--color-nordic-blue);
+        }
+        &.btn-purple {
+          background-color: var(--color-purple);
+        }
+      }
+    }
+  }
+}
+
 /* font saves */
 .cinzel-decorative-regular {
   font-family: "Cinzel Decorative", serif;
@@ -519,6 +664,25 @@ h1 {
   font-weight: 900;
   font-size: 4rem;
 }
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  span {
+    font-family: "Cinzel", serif;
+    font-size: 2.5rem;
+  }
+}
+h3 {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+section {
+  p {
+    font-size: 1.15rem;
+    font-weight: 300;
+  }
+}
 
 h2,
 h3,
@@ -527,6 +691,12 @@ h5,
 h6 {
   font-family: "Cinzel", serif;
   color: var(--text-white);
+  .red {
+    color: var(--accent-red);
+  }
+  .blue {
+    color: var(--accent-blue);
+  }
 }
 
 a,
