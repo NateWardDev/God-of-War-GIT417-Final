@@ -50,8 +50,11 @@
   --border-color: #c2b280;
 }
 
-body {
+html {
   scroll-behavior: smooth;
+}
+
+body {
   background-color: var(--bg-primary);
   color: var(--text-white);
   transition:
@@ -69,7 +72,7 @@ body {
   gap: 1rem;
 }
 section {
-  padding: 0 7rem;
+  padding: 3.5rem 7rem;
 }
 
 .img-wrapper {
@@ -504,7 +507,7 @@ header {
 /* ----- story intro ----- */
 .story-intro {
   text-align: center;
-  padding: 2.5rem 0;
+  padding: 5rem;
   p {
     margin: auto auto;
     max-width: 800px;
@@ -515,7 +518,7 @@ header {
 .game-story-cards {
   padding: 2.5rem 7rem;
   .section-title {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   /* Card Layout Container */
   .card-container {
@@ -632,6 +635,209 @@ header {
         }
         &.btn-purple {
           background-color: var(--color-purple);
+        }
+      }
+    }
+  }
+}
+
+/* ----- game product cards ----- */
+.game-product-cards {
+  .section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .saga-cards-grid {
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    .saga-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: calc(33%);
+      gap: 1rem;
+      .img-wrapper {
+        width: 100%;
+        aspect-ratio: 1 / 1; /* Makes the wrapper a perfect square */
+        border-radius: var(--radius-md);
+        overflow: hidden;
+
+        img {
+          transition: transform 0.25s ease;
+        }
+
+        /* Subtle hover effect for the game box art */
+        &:hover img {
+          transform: scale(1.04);
+        }
+      }
+
+      /* Typography underneath the art */
+      .game-title {
+        font-size: 1.25rem;
+        text-transform: uppercase;
+      }
+
+      /* Horizontal layout for action items */
+      .buttons-container {
+        display: flex;
+        width: 90%;
+        gap: 1rem;
+
+        .btn {
+          color: var(--text-white);
+          flex: 1;
+          padding: 1rem 0.5rem;
+          font-size: 0.85rem;
+          font-weight: 600;
+          text-align: center;
+          text-decoration: none;
+          border-radius: var(--radius-sm);
+          transition: all 0.25s ease-in-out;
+          opacity: 0.8;
+
+          /* Dark transparent outline button styling */
+          &.btn-outline {
+            border: 1px solid var(--light-line);
+            background: var(--bg-primary);
+
+            &:hover {
+              opacity: 1;
+              filter: brightness(2);
+            }
+          }
+
+          /* Coming Soon state */
+          &.btn-disabled {
+            color: var(--text-white);
+            border: 1px solid var(--light-line);
+            cursor: not-allowed;
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ----- game popup details ----- */
+/* --- Popup System --- */
+.popup {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85); /* Black dimming overlay background */
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+  /* State when JavaScript triggers the popup open */
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Inner Card Content Box */
+  .popup-inner {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--light-line);
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  /* Close Action Button */
+  .popup-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-white);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  /* Header Container */
+  .popup-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--light-line);
+
+    /* Little UI Promotion Badges */
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--text-white);
+      filter: brightness(1.25);
+
+      &.badge-sale {
+        background-color: var(--color-gow-red);
+      }
+      &.badge-blue {
+        background-color: var(--color-nordic-blue);
+      }
+      &.badge-upcoming {
+        background-color: var(--color-purple);
+      }
+    }
+  }
+
+  /* Main Body Section */
+  .popup-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    /* Store Meta Specification Layout */
+    .store-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .spec-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Aligns text correctly if layout wraps lines */
+        gap: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px dashed var(--light-line);
+
+        .spec-label {
+          white-space: nowrap; /* Prevents titles from packing into narrow lines */
+          font-weight: 600;
+        }
+
+        .spec-value {
+          font-weight: 600;
+          text-align: right;
+          font-size: 0.9rem;
+          max-width: 400px;
         }
       }
     }

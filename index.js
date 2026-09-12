@@ -78,3 +78,30 @@ const changeHeaderHandler = (e) => {
 headerBtns.forEach((button) => {
   button.addEventListener("click", changeHeaderHandler);
 });
+
+// popups for the game info section
+const gameInfoBtns = document.querySelectorAll(".game-info");
+const popups = document.querySelectorAll(".popup");
+const closePopupBtns = document.querySelectorAll(".popup-close");
+
+const popupHandler = (e, buttons, classControll) => {
+  const clickedBtn = e.target;
+
+  const index = Array.from(buttons).indexOf(clickedBtn);
+
+  if (popups[index]) {
+    popups[index].classList[classControll]("open");
+  }
+};
+
+gameInfoBtns.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    popupHandler(e, gameInfoBtns, "add");
+  });
+});
+
+closePopupBtns.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    popupHandler(e, closePopupBtns, "remove");
+  });
+});
