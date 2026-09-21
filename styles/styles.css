@@ -651,7 +651,7 @@ header {
     display: flex;
     flex-direction: row;
     /* flex-wrap: wrap; */
-    align-items: center;
+    align-items: start;
     justify-content: center;
     gap: 2rem;
     .saga-card {
@@ -678,6 +678,7 @@ header {
 
       /* Typography underneath the art */
       .game-title {
+        text-align: center;
         font-size: 1.25rem;
         text-transform: uppercase;
       }
@@ -725,7 +726,6 @@ header {
 }
 
 /* ----- game popup details ----- */
-/* --- Popup System --- */
 .popup {
   position: fixed;
   inset: 0;
@@ -840,6 +840,185 @@ header {
           max-width: 400px;
         }
       }
+    }
+  }
+}
+
+/* ----- Characters Section Styling ----- */
+.characters {
+  background: var(--bg-primary);
+  .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+}
+
+.character-showcase-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #121212;
+  border: 1px solid var(--light-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  min-height: 550px;
+  position: relative;
+  gap: 0;
+}
+
+/* Left Vertical Navigation Menu */
+.character-nav {
+  width: 280px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-right: 1px solid var(--light-line);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 1rem;
+  gap: 1rem;
+  z-index: 2;
+
+  .char-nav-btn {
+    text-align: left;
+    font-family: var(--font-subheading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--text-white);
+      background: var(--light-line);
+    }
+
+    &.active {
+      color: var(--text-white);
+      background-color: var(--color-nornir-gold);
+      color: var(--text-black);
+    }
+  }
+}
+
+/* Right Content Display Area */
+.character-display-area {
+  flex: 1;
+  position: relative; /* Container for absolute positioned cards */
+  overflow: hidden;
+  background: radial-gradient(circle at right, #1f2226 0%, #0d0d0d 70%);
+}
+
+/* Individual Content Panels */
+.char-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3rem;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(20px);
+  transition:
+    opacity 0.4s ease-in-out,
+    transform 0.4s ease-in-out;
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  .char-info {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25krem;
+    z-index: 2;
+
+    h3 {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+
+    p {
+      color: #dfdfdf;
+      line-height: 1.6;
+    }
+
+    .char-weapons {
+      margin-top: 1rem;
+      h4 {
+        font-size: 0.9rem;
+        color: var(--color-nornir-gold);
+        letter-spacing: 1px;
+        margin-bottom: 0.35rem;
+      }
+      p {
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .img-wrapper {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+
+    img {
+      max-height: 500px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.8));
+    }
+  }
+}
+
+/* ----- Gallery Section Styling ----- */
+.gallery-section {
+  .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.gallery-card {
+  cursor: pointer;
+  background-color: #121212;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+
+    img {
+      transform: scale(1.05);
     }
   }
 }

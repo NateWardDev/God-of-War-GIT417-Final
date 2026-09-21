@@ -105,3 +105,71 @@ closePopupBtns.forEach((button) => {
     popupHandler(e, closePopupBtns, "remove");
   });
 });
+
+// Character Section Tab Controller
+const charNavBtns = document.querySelectorAll(".char-nav-btn");
+const charPanels = document.querySelectorAll(".char-panel");
+
+const charSwitchHandler = (e) => {
+  const clickedBtn = e.target;
+  const targetId = clickedBtn.getAttribute("data-target");
+
+  // Remove active classes from all buttons and panels
+  charNavBtns.forEach((btn) => btn.classList.remove("active"));
+  charPanels.forEach((panel) => panel.classList.remove("active"));
+
+  // Add active class to clicked button and target panel
+  clickedBtn.classList.add("active");
+  const targetPanel = document.getElementById(targetId);
+  if (targetPanel) {
+    targetPanel.classList.add("active");
+  }
+};
+
+charNavBtns.forEach((button) => {
+  button.addEventListener("click", charSwitchHandler);
+});
+
+// Simple Lightbox Effect for Gallery Images
+const galleryCards = document.querySelectorAll(".gallery-card img");
+
+// Create lightbox container dynamically
+const lightbox = document.createElement("div");
+lightbox.id = "image-lightbox";
+lightbox.style.cssText = `
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+`;
+
+const lightboxImg = document.createElement("img");
+lightboxImg.style.cssText = `
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+`;
+
+lightbox.appendChild(lightboxImg);
+document.body.appendChild(lightbox);
+
+galleryCards.forEach((img) => {
+  img.addEventListener("click", () => {
+    lightboxImg.src = img.src;
+    lightbox.style.opacity = "1";
+    lightbox.style.pointerEvents = "auto";
+  });
+});
+
+lightbox.addEventListener("click", () => {
+  lightbox.style.opacity = "0";
+  lightbox.style.pointerEvents = "none";
+});
