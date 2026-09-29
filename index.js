@@ -1,28 +1,31 @@
-// light/ Dark page Controlls
+// Light / Dark page controls
 const lightDarkModeBtnToggle = document.querySelectorAll(
   ".site-theme-switch-btn",
 );
 
-const themeSwitchHandler = (e) => {
-  console.log(e);
+lightDarkModeBtnToggle.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const body = document.body;
+    const currentTheme = body.getAttribute("data-theme");
 
-  //   // 1. Correctly read the current theme from the dataset
-  //   const currentTheme = document.body.dataset.theme;
-
-  //   // 2. Correctly save the calculation to a new variable
-  //   const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-  //   // 3. Apply the new theme to the <body> tag
-  //   document.body.dataset.theme = newTheme;
-
-  //   // 4. Save the preference to localStorage
-  //   localStorage.setItem("theme", newTheme);
-};
-
-lightDarkModeBtnToggle.forEach((button) => {
-  button.addEventListener("click", themeSwitchHandler);
+    // Toggle between dark and light
+    if (currentTheme === "dark") {
+      body.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+    } else {
+      body.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    }
+  });
 });
 
+// Optional: Load saved theme preference on page load
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    document.body.setAttribute("data-theme", savedTheme);
+  }
+});
 // navigation controls
 const topnav = document.querySelector(".topnav");
 const scrollNav = document.querySelector(".scroll-nav");

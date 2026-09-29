@@ -4,7 +4,6 @@
   /* Primary Colors */
   --color-nordic-blue: #1c5a7b;
   --color-gow-red: #542021;
-  --color-nornir-gold: #d4af37;
   --color-purple: #492747;
   --color-raven-black: #0d0d0d;
   --color-frost-white: #f5f5f5;
@@ -29,25 +28,29 @@
 
   /* Default Dark Mode Semantic Mapping */
   --bg-primary: #0d0d0d;
+  --bg-primary-always: #0d0d0d;
   --text-white: #fff;
+  --text-white-always: #fff;
   --text-black: #000;
+  --text-black-always: #000;
   --text-muted: #c2b280;
   --accent-red: #c61919;
   --accent-blue: #30739d;
-  --accent-gold: #d4af37;
+  --color-nornir-gold: #d4af37;
   --border-color: #5a3e2b;
   --light-line: #ffffff30;
 }
 
 [data-theme="light"] {
   /* Light Mode Overrides */
-  --bg-primary: #f5f5f5;
-  --bg-secondary: #ffffff;
-  --text-primary: #0d0d0d;
-  --text-muted: #4a4a4a;
-  --accent-primary: #8b1e1e;
-  --accent-gold: #d4af37;
-  --border-color: #c2b280;
+  --bg-primary: #f2f2f2;
+  --bg-primary-always: #0d0d0d;
+  --text-white: #000;
+  --text-white-always: #fff;
+  --text-black: #fff;
+  --text-black-always: #000;
+  --light-line: #00000035;
+  --color-nornir-gold: #b99b37;
 }
 
 html {
@@ -90,7 +93,7 @@ section {
 
 h1 {
   font-family: var(--font-heading);
-  color: var(--text-white);
+  color: var(--text-white-always);
   font-weight: 900;
   font-size: 4rem;
   letter-spacing: 1px;
@@ -105,6 +108,10 @@ h2 {
 h3 {
   font-weight: 600;
   font-size: 2rem;
+}
+h4 {
+  font-weight: 400;
+  font-size: 1.25rem;
 }
 
 section {
@@ -260,6 +267,7 @@ nav {
   .logo-link {
     margin-right: auto;
     .logo-img {
+      padding-top: 5px;
       height: 30px;
     }
   }
@@ -463,6 +471,7 @@ header {
         height: 100%;
 
         p {
+          color: var(--text-white-always);
           position: absolute;
           bottom: 0;
           width: 100%;
@@ -493,13 +502,12 @@ header {
       overflow: hidden;
       position: relative;
       display: flex;
-      border: 1px solid var(--light-line);
       border-radius: var(--radius-sm);
-      background: var(--bg-primary);
+      background: var(--bg-primary-always);
 
       button {
         transition: 0.25s ease-in-out;
-        color: var(--text-white);
+        color: var(--text-white-always);
         font-size: 1.15rem;
         width: 200px;
         padding: 0.75rem;
@@ -528,6 +536,7 @@ header {
       gap: 0.5rem;
       p,
       i {
+        color: var(--text-white-always);
         font-size: 0.9rem;
       }
     }
@@ -613,6 +622,9 @@ header {
       justify-content: center;
       gap: 1rem;
       z-index: 2;
+      * {
+        color: var(--text-white-always);
+      }
       p {
         padding-left: 0.5rem;
       }
@@ -805,7 +817,7 @@ header {
       border-radius: 4px;
       text-transform: uppercase;
       white-space: nowrap;
-      color: var(--text-white);
+      color: var(--text-white-always);
       filter: brightness(1.25);
 
       &.badge-sale {
@@ -858,7 +870,6 @@ header {
 
 /* ----- Characters Section Styling ----- */
 .characters {
-  background: var(--bg-primary);
   .section-title {
     text-align: center;
     margin-bottom: 3rem;
@@ -866,7 +877,7 @@ header {
   .character-showcase-container {
     display: flex;
     flex-direction: row;
-    background-color: #121212;
+    background-color: var(--bg-primary-always);
     border: 1px solid var(--light-line);
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -894,7 +905,7 @@ header {
         cursor: pointer;
 
         &:hover {
-          color: var(--text-white);
+          color: var(--text-white-always);
           background: var(--light-line);
         }
 
@@ -941,6 +952,7 @@ header {
           z-index: 2;
 
           h3 {
+            color: var(--text-white-always);
             font-size: 2.5rem;
             letter-spacing: 1px;
           }
@@ -953,14 +965,8 @@ header {
           .char-weapons {
             margin-top: 1rem;
             h4 {
-              font-size: 0.9rem;
               color: var(--color-nornir-gold);
-              letter-spacing: 1px;
               margin-bottom: 0.35rem;
-            }
-            p {
-              font-size: 0.95rem;
-              font-weight: 600;
             }
           }
         }
@@ -1001,7 +1007,6 @@ header {
       border-radius: var(--radius-md);
       overflow: hidden;
       aspect-ratio: 16 / 10;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
       transition:
         transform 0.3s ease,
         border-color 0.3s ease;
@@ -1190,6 +1195,7 @@ header {
 
     /* Updated footer-review container to manage absolute sliding panels */
     .footer-review-container {
+      padding: 0 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1217,6 +1223,7 @@ header {
             opacity 0.4s ease-in-out,
             transform 0.4s ease-in-out;
           font-family: var(--font-subheading);
+          color: var(--text-white-always);
           &.active {
             opacity: 1;
             pointer-events: auto;
@@ -1228,6 +1235,9 @@ header {
           .quote-text {
             font-size: 1.35rem;
             line-height: 1.5;
+          }
+          p {
+            color: var(--text-white-always);
           }
         }
       }
@@ -1270,6 +1280,9 @@ header {
       display: flex;
       list-style: none;
       gap: 3.5rem;
+      a {
+        color: var(--text-white-always);
+      }
     }
 
     .footer-copyright {
@@ -1281,6 +1294,7 @@ header {
 
       p {
         font-size: 0.85rem;
+        color: var(--text-white-always);
       }
     }
   }
@@ -1383,13 +1397,20 @@ textarea:focus-visible {
   .game-story-cards {
     /* Core Card Layout */
     .card {
-      display: flex;
       flex-direction: column;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      height: auto;
-      /* Left Side: Content Box */
+      height: auto; /* Changed from 600px to auto so text flows naturally */
+      /* remove fade */
+      .img-wrapper::after {
+        display: none;
+      }
+      .img-wrapper {
+        flex: none;
+        height: 500px; /* Set wrapper to 500px */
+      }
+
       .card-content {
+        flex: auto;
+        height: auto; /* Text wrapper height is auto */
         text-align: center;
         p {
           padding-left: 0rem;
