@@ -173,3 +173,28 @@ lightbox.addEventListener("click", () => {
   lightbox.style.opacity = "0";
   lightbox.style.pointerEvents = "none";
 });
+
+// footer items
+document.addEventListener("DOMContentLoaded", () => {
+  const reviewPanels = document.querySelectorAll(".review-panel");
+  const dotButtons = document.querySelectorAll(".dot-btn");
+
+  dotButtons.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const targetIndex = dot.getAttribute("data-index");
+
+      // Remove active class from all panels and dots
+      reviewPanels.forEach((panel) => panel.classList.remove("active"));
+      dotButtons.forEach((btn) => btn.classList.remove("active"));
+
+      // Add active class to target panel and dot
+      const activePanel = document.querySelector(
+        `.review-panel[data-index="${targetIndex}"]`,
+      );
+      if (activePanel) {
+        activePanel.classList.add("active");
+      }
+      dot.classList.add("active");
+    });
+  });
+});

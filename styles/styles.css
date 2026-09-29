@@ -17,7 +17,7 @@
   --color-clay-terracotta: #b36a4c;
 
   /* Typography */
-  --font-heading: "Cinzel Trajan", serif;
+  --font-heading: "Cinzel", serif;
   --font-subheading: "Cinzel", serif;
   --font-body: "Lato", sans-serif;
 
@@ -72,17 +72,88 @@ body {
   gap: 1rem;
 }
 section {
-  padding: 3.5rem 7rem;
+  padding: 3.5rem 6rem;
 }
 
 .img-wrapper {
   width: 100%;
   height: 100%;
   img {
+    display: flex;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+}
+
+/* ----- fonts & font sizes seprate ------ */
+
+h1 {
+  font-family: var(--font-heading);
+  color: var(--text-white);
+  font-weight: 900;
+  font-size: 4rem;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  span {
+    font-size: 2.5rem;
+  }
+}
+h3 {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+section {
+  p {
+    font-size: 1.15rem;
+    font-weight: 300;
+  }
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-subheading);
+  color: var(--text-white);
+  span {
+    font-family: var(--font-subheading);
+  }
+  .red {
+    color: var(--accent-red);
+  }
+  .blue {
+    color: var(--accent-blue);
+  }
+}
+
+a,
+i,
+p,
+span,
+textarea {
+  color: var(--text-white);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-size: 1rem;
+}
+a {
+  font-size: 1rem;
+  font-family: var(--font-subheading);
+}
+
+button,
+.btn {
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+  font-family: var(--font-subheading);
 }
 
 /* ----- site navigation ------ */
@@ -109,19 +180,6 @@ nav {
 
       &.active {
         opacity: 1;
-      }
-    }
-    &:hover {
-      i {
-        &.fa-cart-shopping {
-          color: var(--accent-red);
-        }
-        &.fa-sun {
-          color: yellow;
-        }
-        &.fa-moon {
-          color: rgb(113, 3, 113);
-        }
       }
     }
   }
@@ -360,6 +418,7 @@ header {
       position: relative;
       width: 100%;
       min-height: 100px; /* Gives it a base height like description */
+      height: 50%;
       overflow: hidden;
 
       div {
@@ -396,6 +455,7 @@ header {
       position: relative;
       width: 100%;
       max-width: 750px;
+      height: 25%;
       min-height: 50px;
       overflow: hidden;
 
@@ -436,19 +496,6 @@ header {
       border: 1px solid var(--light-line);
       border-radius: var(--radius-sm);
       background: var(--bg-primary);
-      /* little design lines */
-      &::after {
-        z-index: -1;
-        content: "";
-        position: absolute;
-        left: -1.5rem;
-        right: -1.5rem;
-        top: 50%;
-        bottom: -1rem;
-        border: 1px solid var(--light-line);
-        pointer-events: none;
-        border-radius: var(--radius-sm);
-      }
 
       button {
         transition: 0.25s ease-in-out;
@@ -457,23 +504,6 @@ header {
         width: 200px;
         padding: 0.75rem;
         overflow: hidden;
-        &:hover {
-          filter: brightness(2.5);
-          &.original {
-            color: var(--color-gow-red);
-          }
-          &.ragnarok {
-            color: var(--color-nordic-blue);
-          }
-          &.laufey {
-            color: var(--color-purple);
-          }
-          /* remove hover for active button */
-          &.active {
-            filter: brightness(1);
-            color: var(--text-white);
-          }
-        }
         &.active {
           &.original {
             background: var(--color-gow-red);
@@ -507,7 +537,6 @@ header {
 /* ----- story intro ----- */
 .story-intro {
   text-align: center;
-  padding: 5rem;
   p {
     margin: auto auto;
     max-width: 800px;
@@ -516,9 +545,9 @@ header {
 
 /* ----- story game cards ------ */
 .game-story-cards {
-  padding: 2.5rem 7rem;
   .section-title {
     margin-bottom: 2rem;
+    text-align: center;
   }
   /* Card Layout Container */
   .card-container {
@@ -540,8 +569,8 @@ header {
         background: linear-gradient(
           to right,
           var(--color-gow-red) 0%,
-          rgba(59, 27, 34, 0.8) 15%,
-          transparent 50%
+          #542021cc 15%,
+          transparent 35%
         );
       }
     }
@@ -552,26 +581,26 @@ header {
         background: linear-gradient(
           to right,
           var(--color-nordic-blue) 0%,
-          rgba(30, 45, 66, 0.8) 15%,
-          transparent 50%
+          #1c5a7bcc 15%,
+          transparent 35%
         );
       }
     }
     &.card-purple {
       background-color: var(--color-purple);
-
       /* flip the image */
       .img-wrapper {
         img {
           transform: scaleX(-1);
         }
       }
+
       .img-wrapper::after {
         background: linear-gradient(
           to right,
           var(--color-purple) 0%,
-          rgba(43, 29, 61, 0.8) 15%,
-          transparent 50%
+          #492747cc 15%,
+          transparent 35%
         );
       }
     }
@@ -591,7 +620,7 @@ header {
 
     /* Right Side: Media Box */
     .img-wrapper {
-      flex: 1.5;
+      flex: 1.3;
       position: relative;
       overflow: hidden;
 
@@ -620,21 +649,19 @@ header {
         font-weight: bold;
         color: white;
         z-index: 3;
-        transition: filter 0.2s ease-in-out;
-        filter: brightness(1.25);
-
-        &:hover {
-          filter: brightness(1.75);
-        }
+        transition:
+          background-color 0.2s ease-in-out,
+          color 0.2s ease-in-out;
+        font-size: 1rem;
 
         &.btn-red {
-          background-color: var(--color-gow-red);
+          background: var(--color-gow-red);
         }
         &.btn-blue {
-          background-color: var(--color-nordic-blue);
+          background: var(--color-nordic-blue);
         }
         &.btn-purple {
-          background-color: var(--color-purple);
+          background: var(--color-purple);
         }
       }
     }
@@ -669,11 +696,6 @@ header {
         img {
           transition: transform 0.25s ease;
         }
-
-        /* Subtle hover effect for the game box art */
-        &:hover img {
-          transform: scale(1.04);
-        }
       }
 
       /* Typography underneath the art */
@@ -704,17 +726,12 @@ header {
           /* Dark transparent outline button styling */
           &.btn-outline {
             border: 1px solid var(--light-line);
-            background: var(--bg-primary);
-
-            &:hover {
-              opacity: 1;
-              filter: brightness(2);
-            }
           }
 
           /* Coming Soon state */
           &.btn-disabled {
             color: var(--text-white);
+            background-color: transparent;
             border: 1px solid var(--light-line);
             cursor: not-allowed;
             opacity: 0.5;
@@ -769,11 +786,6 @@ header {
     color: var(--text-white);
     font-size: 2rem;
     cursor: pointer;
-    transition: opacity 0.2s ease;
-    opacity: 0.8;
-    &:hover {
-      opacity: 1;
-    }
   }
 
   /* Header Container */
@@ -851,133 +863,124 @@ header {
     text-align: center;
     margin-bottom: 3rem;
   }
-}
-
-.character-showcase-container {
-  display: flex;
-  flex-direction: row;
-  background-color: #121212;
-  border: 1px solid var(--light-line);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  min-height: 550px;
-  position: relative;
-  gap: 0;
-}
-
-/* Left Vertical Navigation Menu */
-.character-nav {
-  width: 280px;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-right: 1px solid var(--light-line);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem 1rem;
-  gap: 1rem;
-  z-index: 2;
-
-  .char-nav-btn {
-    text-align: left;
-    font-family: var(--font-subheading);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    padding: 0.75rem 1.25rem;
-    border-radius: var(--radius-sm);
-    background: transparent;
-    transition: all 0.25s ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-      color: var(--text-white);
-      background: var(--light-line);
-    }
-
-    &.active {
-      color: var(--text-white);
-      background-color: var(--color-nornir-gold);
-      color: var(--text-black);
-    }
-  }
-}
-
-/* Right Content Display Area */
-.character-display-area {
-  flex: 1;
-  position: relative; /* Container for absolute positioned cards */
-  overflow: hidden;
-  background: radial-gradient(circle at right, #1f2226 0%, #0d0d0d 70%);
-}
-
-/* Individual Content Panels */
-.char-panel {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 3rem;
-  gap: 2rem;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(20px);
-  transition:
-    opacity 0.4s ease-in-out,
-    transform 0.4s ease-in-out;
-
-  &.active {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(0);
-  }
-
-  .char-info {
-    flex: 1.2;
+  .character-showcase-container {
     display: flex;
-    flex-direction: column;
-    gap: 1.25krem;
-    z-index: 2;
-
-    h3 {
-      font-size: 2.5rem;
-      letter-spacing: 1px;
-    }
-
-    p {
-      color: #dfdfdf;
-      line-height: 1.6;
-    }
-
-    .char-weapons {
-      margin-top: 1rem;
-      h4 {
-        font-size: 0.9rem;
-        color: var(--color-nornir-gold);
-        letter-spacing: 1px;
-        margin-bottom: 0.35rem;
-      }
-      p {
-        font-size: 0.95rem;
-        font-weight: 600;
-      }
-    }
-  }
-
-  .img-wrapper {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    flex-direction: row;
+    background-color: #121212;
+    border: 1px solid var(--light-line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-height: 550px;
     position: relative;
-    z-index: 1;
+    gap: 0;
+    /* Left Vertical Navigation Menu */
+    .character-nav {
+      width: 280px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-right: 1px solid var(--light-line);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1rem;
+      gap: 1rem;
+      z-index: 2;
 
-    img {
-      max-height: 500px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.8));
+      .char-nav-btn {
+        text-align: left;
+        color: var(--text-muted);
+        padding: 0.75rem 1.25rem;
+        border-radius: var(--radius-sm);
+        background: transparent;
+        cursor: pointer;
+
+        &:hover {
+          color: var(--text-white);
+          background: var(--light-line);
+        }
+
+        &.active {
+          color: var(--text-white);
+          background-color: var(--color-nornir-gold);
+          color: var(--text-black);
+        }
+      }
+    }
+    /* Right Content Display Area */
+    .character-display-area {
+      flex: 1;
+      position: relative; /* Container for absolute positioned cards */
+      overflow: hidden;
+      background: radial-gradient(circle at right, #1f2226 0%, #0d0d0d 70%);
+      /* Individual Content Panels */
+      .char-panel {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 3rem;
+        gap: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(20px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+
+        &.active {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateX(0);
+        }
+
+        .char-info {
+          flex: 1.2;
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+          z-index: 2;
+
+          h3 {
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+          }
+
+          p {
+            color: #dfdfdf;
+            line-height: 1.6;
+          }
+
+          .char-weapons {
+            margin-top: 1rem;
+            h4 {
+              font-size: 0.9rem;
+              color: var(--color-nornir-gold);
+              letter-spacing: 1px;
+              margin-bottom: 0.35rem;
+            }
+            p {
+              font-size: 0.95rem;
+              font-weight: 600;
+            }
+          }
+        }
+
+        .img-wrapper {
+          flex: 1;
+          height: 100%;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          position: relative;
+          z-index: 1;
+
+          img {
+            max-height: 500px;
+            width: auto;
+            object-fit: contain;
+          }
+        }
+      }
     }
   }
 }
@@ -988,138 +991,463 @@ header {
     text-align: center;
     margin-bottom: 3rem;
   }
-}
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    .gallery-card {
+      cursor: pointer;
+      background-color: #121212;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.gallery-card {
-  cursor: pointer;
-  background-color: #121212;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  aspect-ratio: 16 / 10;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  &:hover {
-    transform: translateY(-5px);
-
-    img {
-      transform: scale(1.05);
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
     }
   }
 }
 
-/* font saves */
-.cinzel-decorative-regular {
-  font-family: "Cinzel Decorative", serif;
-  font-weight: 400;
-  font-style: normal;
-}
+/* ----- Contact Section Styling ----- */
+.contact-section {
+  .contact-container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 1.5rem;
+    .contact-form-wrapper {
+      flex: 1.2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      .section-title {
+        margin-bottom: 0.5rem;
+      }
+      #contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        .form-group {
+          input,
+          textarea {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--light-line);
+            border-radius: var(--radius-sm);
+            padding: 0.9rem 1.2rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+            &:focus {
+              border-color: var(--color-nornir-gold);
+            }
+          }
+          textarea {
+            resize: vertical;
+          }
+        }
+        .form-footer {
+          display: flex;
+          gap: 2rem;
+          align-items: center;
+          padding: 0.5rem 0;
+          p {
+            font-size: 0.9rem;
+          }
+          .notification-pref {
+            display: flex;
+            flex-direction: column;
+          }
+          .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            .switch {
+              position: relative;
+              display: inline-block;
+              width: 50px;
+              height: 26px;
+              input {
+                opacity: 0;
+                width: 0;
+                height: 0;
 
-.cinzel-decorative-bold {
-  font-family: "Cinzel Decorative", serif;
-  font-weight: 700;
-  font-style: normal;
-}
+                &:checked + .slider {
+                  background-color: var(--color-nornir-gold);
+                  border-color: var(--color-nornir-gold);
 
-.cinzel-decorative-black {
-  font-family: "Cinzel Decorative", serif;
-  font-weight: 900;
-  font-style: normal;
-}
+                  &:before {
+                    transform: translateX(24px);
+                    background-color: #000;
+                  }
+                }
+              }
 
-/* ----- fonts & font sizes seprate ------ */
-h1 {
-  font-family: "Cinzel", serif;
-  color: var(--text-white);
-  font-weight: 900;
-  font-size: 4rem;
-}
-h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  span {
-    font-family: "Cinzel", serif;
-    font-size: 2.5rem;
+              .slider {
+                position: absolute;
+                cursor: pointer;
+                inset: 0;
+                background-color: #333;
+                transition: 0.3s;
+                border-radius: 34px;
+                border: 1px solid #444;
+
+                &:before {
+                  position: absolute;
+                  content: "";
+                  height: 18px;
+                  width: 18px;
+                  left: 3px;
+                  bottom: 3px;
+                  background-color: white;
+                  transition: 0.3s;
+                  border-radius: 50%;
+                }
+              }
+            }
+          }
+        }
+
+        .submit-btn {
+          align-self: flex-start;
+          border: 1px solid var(--light-line);
+          padding: 0.6rem 2.5rem;
+          color: var(--text-white);
+          border-radius: var(--radius-sm);
+          &:hover {
+            color: var(--text-black);
+          }
+        }
+      }
+    }
+
+    .img-wrapper {
+      flex: 1;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      height: auto;
+    }
   }
 }
-h3 {
-  font-weight: bold;
-  font-size: 2rem;
-}
 
-section {
-  p {
-    font-size: 1.15rem;
-    font-weight: 300;
+/* ----- Footer Section Styling ----- */
+.site-footer {
+  position: relative;
+  background-image: url("../images/footer_bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 3.5rem;
+  padding: 6rem 0 2.5rem 0;
+
+  /* Dark overlay to ensure text stands out against the background image */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #0a0a0a51;
+    z-index: 1;
+  }
+
+  /* fade on bottom */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      #0d0d0d 5%,
+      #0d0d0dbf 15%,
+      #0d0d0d80 25%,
+      #0d0d0d40 35%,
+      #0d0d0d00 45%
+    );
+    pointer-events: none;
+  }
+
+  .footer-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+
+    .footer-logo {
+      .logo-img {
+        max-height: 40px;
+        width: auto;
+        object-fit: contain;
+      }
+    }
+
+    /* Updated footer-review container to manage absolute sliding panels */
+    .footer-review-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      width: 100%;
+      max-width: 850px;
+
+      .reviews-slider {
+        position: relative;
+        width: 100%;
+        min-height: 175px; /* Reserves space to prevent vertical shifting */
+
+        .review-panel {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 1.5rem;
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(10px);
+          transition:
+            opacity 0.4s ease-in-out,
+            transform 0.4s ease-in-out;
+          font-family: var(--font-subheading);
+          &.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+          }
+          .rating {
+            color: var(--color-nornir-gold);
+          }
+          .quote-text {
+            font-size: 1.35rem;
+            line-height: 1.5;
+          }
+        }
+      }
+
+      /* Dot Indicators Styling */
+      .carousel-dots {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        align-items: center;
+
+        .dot-btn {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: #0000008a;
+          cursor: pointer;
+          padding: 0;
+          transition: all 0.3s ease;
+          &:hover {
+            background: var(--color-nornir-gold);
+          }
+          &.active {
+            width: 40px;
+            height: 15px;
+            border-radius: var(--radius-sm);
+            background-color: var(--color-nornir-gold);
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+
+    .footer-divider {
+      width: 100%;
+      border: none;
+      border-top: 1px solid var(--light-line);
+    }
+    .footer-nav {
+      display: flex;
+      list-style: none;
+      gap: 3.5rem;
+    }
+
+    .footer-copyright {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      opacity: 0.75;
+
+      p {
+        font-size: 0.85rem;
+      }
+    }
   }
 }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Cinzel", serif;
-  color: var(--text-white);
-  .red {
-    color: var(--accent-red);
+/* ===== HOVER & INTERACTION STATES ===== */
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    color: var(--color-nornir-gold);
   }
-  .blue {
-    color: var(--accent-blue);
+
+  nav button:hover i,
+  .popup-close:hover,
+  .shopping-cart:hover i {
+    color: var(--color-nornir-gold);
+  }
+
+  .header-btn:not(.active):hover {
+    color: var(--color-nornir-gold);
+    background: transparent;
+  }
+
+  .game-story-cards .card .img-wrapper .btn:hover {
+    background: var(--color-nornir-gold);
+    color: var(--text-black);
+  }
+
+  .game-product-cards .saga-card .img-wrapper:hover img {
+    transform: scale(1.04);
+  }
+
+  .game-product-cards
+    .saga-card
+    .buttons-container
+    .btn:not(.btn-disabled):hover,
+  .contact-section .submit-btn:hover {
+    background: var(--color-nornir-gold);
+    border-color: var(--color-nornir-gold);
+    color: var(--text-black);
+    opacity: 1;
+  }
+
+  .characters .char-nav-btn:not(.active):hover {
+    color: var(--text-white);
+    background: var(--light-line);
+  }
+
+  .gallery-card:hover {
+    transform: translateY(-0.25rem);
+    border-color: var(--color-nornir-gold);
+  }
+
+  .gallery-card:hover img {
+    transform: scale(1.05);
   }
 }
 
-a,
-i,
-p,
-blockquote,
-span {
-  color: var(--text-white);
-  font-family: "Lato", sans-serif;
-  font-size: 1rem;
+/* Keyboard focus should remain visible even on devices without hover. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-nornir-gold);
+  outline-offset: 3px;
 }
 
-p {
-  line-height: 1.5;
-}
-i {
-  font-size: 1.5rem;
-}
-a {
-  font-size: 1rem;
-}
-
-button {
-  cursor: pointer;
-}
-
+/* ===== RESPONSIVE STYLES ===== */
+/* ----- 1024px ----- */
 @media screen and (max-width: 1024px) {
+  section {
+    padding: 3.5rem 4rem;
+  }
+
+  .topnav {
+    width: 100%;
+    padding-inline: 1.5rem;
+
+    .page-links,
+    hr {
+      display: none;
+    }
+  }
   .scroll-nav {
+    left: 1rem;
+    right: 1rem;
     gap: 1rem;
+
     .menu-control-btn {
       display: flex;
     }
+
     .desktop-links-wrapper ul {
       display: none;
     }
   }
-
   .overlay-menu {
     display: flex;
+  }
+
+  .game-story-cards {
+    /* Core Card Layout */
+    .card {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      height: auto;
+      /* Left Side: Content Box */
+      .card-content {
+        text-align: center;
+        p {
+          padding-left: 0rem;
+        }
+      }
+    }
+  }
+
+  .game-product-cards {
+    .saga-cards-grid {
+      flex-wrap: wrap;
+      .saga-card {
+        width: calc(50% - 1rem);
+      }
+    }
+  }
+
+  .gallery-section {
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      .gallery-card {
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .contact-section {
+    .contact-container {
+      .img-wrapper {
+        display: none;
+      }
+    }
+  }
+}
+
+/* ----- 768px ----- */
+@media screen and (max-width: 768px) {
+  section {
+    padding: 3.5rem 2rem;
+  }
+
+  .game-product-cards {
+    .saga-cards-grid {
+      flex-wrap: wrap;
+      .saga-card {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* ----- 480px ----- */
+@media screen and (max-width: 480px) {
+  section {
+    padding: 3.5rem 1rem;
   }
 }
