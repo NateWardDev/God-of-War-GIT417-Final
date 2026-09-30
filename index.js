@@ -133,48 +133,21 @@ charNavBtns.forEach((button) => {
   button.addEventListener("click", charSwitchHandler);
 });
 
-// Simple Lightbox Effect for Gallery Images
-const galleryCards = document.querySelectorAll(".gallery-card img");
+// gallery expanded image
+const lightbox = document.querySelector(".gallery-lightbox");
+const lightboxImg = lightbox.querySelector("img");
 
-// Create lightbox container dynamically
-const lightbox = document.createElement("div");
-lightbox.id = "image-lightbox";
-lightbox.style.cssText = `
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-`;
-
-const lightboxImg = document.createElement("img");
-lightboxImg.style.cssText = `
-  max-width: 90%;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.8);
-`;
-
-lightbox.appendChild(lightboxImg);
-document.body.appendChild(lightbox);
-
-galleryCards.forEach((img) => {
-  img.addEventListener("click", () => {
-    lightboxImg.src = img.src;
-    lightbox.style.opacity = "1";
-    lightbox.style.pointerEvents = "auto";
+document.querySelectorAll(".gallery-card").forEach((card) => {
+  card.addEventListener("click", () => {
+    const activeImg = card.querySelector("img");
+    lightboxImg.src = activeImg.currentSrc || activeImg.src;
+    lightbox.classList.add("active");
   });
 });
 
+// close on click
 lightbox.addEventListener("click", () => {
-  lightbox.style.opacity = "0";
-  lightbox.style.pointerEvents = "none";
+  lightbox.classList.remove("active");
 });
 
 // footer items
