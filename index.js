@@ -49,22 +49,21 @@ window.addEventListener("scroll", handleNavHide);
 const hamMenu = document.querySelector(".menu-control-btn");
 const overlayNav = document.querySelector(".overlay-menu");
 
-hamMenu.addEventListener("click", () => {
-  // switch button icon from menu lines to x
+const menuHandler = () => {
   const [openBtn, closeBtn] = hamMenu.children;
 
   openBtn.classList.toggle("active");
   closeBtn.classList.toggle("active");
   overlayNav.classList.toggle("active");
   scrollNav.classList.toggle("menu-open");
-});
+};
+
+hamMenu.addEventListener("click", menuHandler);
 
 // close mobile nav when clicking on link
-const scrollNavLinks = document.querySelectorAll(".scroll-nav a");
+const scrollNavLinks = document.querySelectorAll(".overlay-menu a");
 scrollNavLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    overlayNav.classList.remove("active");
-  });
+  link.addEventListener("click", menuHandler);
 });
 
 // header switch controls
