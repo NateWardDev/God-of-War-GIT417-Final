@@ -8,6 +8,12 @@ lightDarkModeBtnToggle.forEach((btn) => {
     const body = document.body;
     const currentTheme = body.getAttribute("data-theme");
 
+    const icons = btn.querySelectorAll("i");
+    // Toggle the 'active' class on each child
+    icons.forEach((icon) => {
+      icon.classList.toggle("active");
+    });
+
     // Toggle between dark and light
     if (currentTheme === "dark") {
       body.setAttribute("data-theme", "light");
@@ -51,6 +57,14 @@ hamMenu.addEventListener("click", () => {
   closeBtn.classList.toggle("active");
   overlayNav.classList.toggle("active");
   scrollNav.classList.toggle("menu-open");
+});
+
+// close mobile nav when clicking on link
+const scrollNavLinks = document.querySelectorAll(".scroll-nav a");
+scrollNavLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    overlayNav.classList.remove("active");
+  });
 });
 
 // header switch controls

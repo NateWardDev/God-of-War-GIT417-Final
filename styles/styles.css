@@ -61,7 +61,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-white);
   transition:
-    background-color 0.3s ease,
+    background-color 0.25s ease,
     color 0.3s ease;
   max-width: 100dvw;
   overflow-x: hidden;
@@ -288,7 +288,9 @@ nav {
 }
 
 .overlay-menu {
-  transition: transform 0.25s ease-in-out;
+  transition:
+    transform 0.25s ease-in-out,
+    background-color 0.25s ease;
   transform: translateY(-100%);
   background: var(--bg-primary);
   z-index: 99;
@@ -317,6 +319,7 @@ nav {
         a {
           opacity: 0;
           transform: translateY(100%);
+          font-size: 1.25rem;
         }
       }
     }
@@ -366,6 +369,9 @@ nav {
     .site-theme-switch-btn {
       opacity: 1;
       transition-delay: 0.25s;
+      i {
+        font-size: 1.25rem;
+      }
     }
   }
 }
@@ -499,19 +505,20 @@ header {
 
     /* controll buttons */
     .buttons-container {
-      overflow: hidden;
       position: relative;
       display: flex;
-      border-radius: var(--radius-sm);
-      background: var(--bg-primary-always);
+      justify-content: center;
+      gap: 0.5rem;
 
       button {
+        border-radius: var(--radius-sm);
         transition: 0.25s ease-in-out;
         color: var(--text-white-always);
         font-size: 1.15rem;
         width: 200px;
         padding: 0.75rem;
-        overflow: hidden;
+        backdrop-filter: blur(0.5rem) brightness(2);
+
         &.active {
           &.original {
             background: var(--color-gow-red);
@@ -893,7 +900,7 @@ header {
       flex-direction: column;
       justify-content: center;
       padding: 2rem 1rem;
-      gap: 1rem;
+      gap: 0.5rem;
       z-index: 2;
 
       .char-nav-btn {
@@ -926,6 +933,7 @@ header {
       .char-panel {
         position: absolute;
         inset: 0;
+        min-width: 0;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -937,7 +945,6 @@ header {
         transition:
           opacity 0.4s ease-in-out,
           transform 0.4s ease-in-out;
-
         &.active {
           opacity: 1;
           pointer-events: auto;
@@ -953,8 +960,6 @@ header {
 
           h3 {
             color: var(--text-white-always);
-            font-size: 2.5rem;
-            letter-spacing: 1px;
           }
 
           p {
@@ -972,6 +977,7 @@ header {
         }
 
         .img-wrapper {
+          min-width: 0;
           flex: 1;
           height: 100%;
           display: flex;
@@ -1215,7 +1221,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4rem;
+    gap: 3rem;
 
     .footer-logo {
       .logo-img {
@@ -1246,6 +1252,7 @@ header {
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center; /* Centers content vertically */
           text-align: center;
           gap: 1.5rem;
           opacity: 0;
@@ -1256,18 +1263,22 @@ header {
             transform 0.4s ease-in-out;
           font-family: var(--font-subheading);
           color: var(--text-white-always);
+
           &.active {
             opacity: 1;
             pointer-events: auto;
             transform: translateY(0);
           }
+
           .rating {
             color: var(--color-nornir-gold);
           }
+
           .quote-text {
             font-size: 1.35rem;
             line-height: 1.5;
           }
+
           p {
             color: var(--text-white-always);
           }
@@ -1310,10 +1321,17 @@ header {
     }
     .footer-nav {
       display: flex;
+      flex-wrap: wrap;
       list-style: none;
+      justify-content: center;
       gap: 3.5rem;
+      padding: 0 0.5rem;
       a {
         color: var(--text-white-always);
+        transition: 0.25s ease-in-out;
+        &:hover {
+          color: var(--color-nornir-gold);
+        }
       }
     }
 
@@ -1342,6 +1360,9 @@ header {
   .popup-close:hover,
   .shopping-cart:hover i {
     color: var(--color-nornir-gold);
+    &.fa-moon {
+      color: var(--accent-blue);
+    }
   }
 
   .header-btn:not(.active):hover {
@@ -1392,19 +1413,19 @@ header {
   .fade-in {
     animation: fadeIn linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 30%;
+    animation-range: entry 0% cover 20%;
   }
 
   .fade-in-card {
     animation: fadeIn linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 35%;
+    animation-range: entry 0% cover 25%;
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(60px);
     }
     to {
       opacity: 1;
@@ -1429,6 +1450,19 @@ textarea:focus-visible {
     padding: 3.5rem 4rem;
   }
 
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+    span {
+      font-size: 2rem;
+    }
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+
   .topnav {
     width: 100%;
     padding-inline: 1.5rem;
@@ -1441,12 +1475,12 @@ textarea:focus-visible {
   .scroll-nav {
     left: 1rem;
     right: 1rem;
-    gap: 1rem;
+    padding: 0.25rem 0.5rem;
+    gap: 0rem;
 
     .menu-control-btn {
       display: flex;
     }
-
     .desktop-links-wrapper ul {
       display: none;
     }
@@ -1466,7 +1500,14 @@ textarea:focus-visible {
       }
       .img-wrapper {
         flex: none;
-        height: 500px; /* Set wrapper to 500px */
+        height: 350px;
+        .btn {
+          position: absolute;
+          bottom: 1.5rem;
+          right: unset;
+          left: 50%;
+          transform: translateX(-50%);
+        }
       }
 
       .card-content {
@@ -1485,6 +1526,47 @@ textarea:focus-visible {
       flex-wrap: wrap;
       .saga-card {
         width: calc(50% - 1rem);
+      }
+    }
+  }
+
+  .characters {
+    .character-showcase-container {
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 800px;
+      .character-nav {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--light-line);
+        flex-direction: row;
+        justify-content: flex-start; /* Changed from center to allow proper scrolling */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding: 1rem;
+        .char-nav-btn {
+          text-align: center;
+          padding: 0.75rem 1.25rem;
+          white-space: nowrap;
+          flex-shrink: 0; /* Prevents buttons from squishing */
+          scroll-snap-align: 1rem; /* Snaps each button into view */
+        }
+      }
+      /* Right Content Display Area */
+      .character-display-area {
+        /* Individual Content Panels */
+        .char-panel {
+          flex-direction: column;
+          padding: 2rem;
+          gap: 1rem;
+          transform: translateX(0);
+          transform: translateY(20px);
+          &.active {
+            transform: translateX(0);
+            transform: translateY(0px);
+          }
+        }
       }
     }
   }
@@ -1518,6 +1600,53 @@ textarea:focus-visible {
     padding: 3.5rem 2rem;
   }
 
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+    span {
+      font-size: 1.75rem;
+    }
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .topnav {
+    .logo-link {
+      .logo-img {
+        height: 2rem;
+      }
+    }
+  }
+
+  header {
+    .content-container {
+      /* controll buttons */
+      .buttons-container {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        button {
+          width: 33%;
+          min-width: 150px;
+        }
+      }
+    }
+  }
+
+  .characters {
+    .character-showcase-container {
+      /* Right Content Display Area */
+      .character-display-area {
+        /* Individual Content Panels */
+        .char-panel {
+          padding: 2rem 1rem;
+        }
+      }
+    }
+  }
+
   .game-product-cards {
     .saga-cards-grid {
       flex-wrap: wrap;
@@ -1526,10 +1655,64 @@ textarea:focus-visible {
       }
     }
   }
+
+  .popup {
+    /* Main Body Section */
+    .popup-inner {
+      max-height: 95vh;
+      overflow-y: auto; /* Enables vertical scrolling inside the popup */
+      padding: 1.25rem; /* Slightly tighter padding for mobile */
+    }
+    .popup-header {
+      text-align: center;
+    }
+    .popup-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      /* Store Meta Specification Layout */
+      .store-specs {
+        .spec-item {
+          flex-direction: column;
+          .spec-value {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  .site-footer {
+    .footer-content {
+      .footer-review-container {
+        .reviews-slider {
+          min-height: 300px; /* Reserves space to prevent vertical shifting */
+          margin-top: auto;
+        }
+      }
+      .footer-nav {
+        gap: 2.5rem;
+      }
+    }
+  }
 }
 
 /* ----- 480px ----- */
 @media screen and (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+    span {
+      font-size: 2rem;
+    }
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+
   section {
     padding: 3.5rem 1rem;
   }
