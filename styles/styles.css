@@ -8,13 +8,6 @@
   --color-raven-black: #0d0d0d;
   --color-frost-white: #f5f5f5;
 
-  /* Earthy Accent Tones */
-  --color-stone-gray: #4a4a4a;
-  --color-earth-brown: #5a3e2b;
-  --color-moss-green: #556b2f;
-  --color-sand-beige: #c2b280;
-  --color-clay-terracotta: #b36a4c;
-
   /* Typography */
   --font-heading: "Cinzel", serif;
   --font-subheading: "Cinzel", serif;
@@ -33,7 +26,6 @@
   --text-white-always: #fff;
   --text-black: #000;
   --text-black-always: #000;
-  --text-muted: #c2b280;
   --accent-red: #c61919;
   --accent-blue: #30739d;
   --color-nornir-gold: #d4af37;
@@ -161,6 +153,9 @@ button,
   cursor: pointer;
   transition: 0.25s ease-in-out;
   font-family: var(--font-subheading);
+  span {
+    font-family: var(--font-subheading);
+  }
 }
 
 /* ----- site navigation ------ */
@@ -696,25 +691,21 @@ header {
         aspect-ratio: 1 / 1; /* Makes the wrapper a perfect square */
         border-radius: var(--radius-md);
         overflow: hidden;
-
         img {
           transition: transform 0.25s ease;
         }
       }
-
       /* Typography underneath the art */
       .game-title {
         text-align: center;
         font-size: 1.25rem;
         text-transform: uppercase;
       }
-
       /* Horizontal layout for action items */
       .buttons-container {
         display: flex;
         width: 90%;
         gap: 1rem;
-
         .btn {
           color: var(--text-white);
           flex: 1;
@@ -726,13 +717,48 @@ header {
           border-radius: var(--radius-sm);
           transition: all 0.25s ease-in-out;
           opacity: 0.8;
+          position: relative;
+          overflow: hidden;
+          span {
+            font-size: 0.85rem;
+            display: block;
+            transition:
+              opacity 0.25s ease-in-out,
+              transform 0.25s ease-in-out;
+            &:first-child {
+              opacity: 1;
+              transform: translateY(0);
+            }
+            &:last-child {
+              position: absolute;
+              inset: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              opacity: 0;
+              transform: translateY(100%);
+            }
+          }
+          &:hover {
+            color: var(--text-black-always);
+            span {
+              color: var(--text-black-always);
+              &:first-child {
+                opacity: 0;
+                transform: translateY(-100%);
+              }
 
-          /* Dark transparent outline button styling */
+              &:last-child {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+          }
+
           &.btn-outline {
             border: 1px solid var(--light-line);
           }
 
-          /* Coming Soon state */
           &.btn-disabled {
             color: var(--text-white);
             background-color: transparent;
@@ -1281,19 +1307,19 @@ header {
           width: 20px;
           height: 20px;
           border-radius: 50%;
-          background-color: #0000008a;
+          background-color: #ffffff7a;
           cursor: pointer;
           padding: 0;
           transition: all 0.3s ease;
+          backdrop-filter: blur(0.5rem) brightness(2);
           &:hover {
             background: var(--color-nornir-gold);
           }
           &.active {
             width: 40px;
-            height: 15px;
+            height: 20px;
             border-radius: var(--radius-sm);
             background-color: var(--color-nornir-gold);
-            transform: scale(1.2);
           }
         }
       }
@@ -1371,7 +1397,7 @@ header {
   .contact-section .submit-btn:hover {
     background: var(--color-nornir-gold);
     border-color: var(--color-nornir-gold);
-    color: var(--text-black);
+    color: var(--text-black-always);
     opacity: 1;
   }
 

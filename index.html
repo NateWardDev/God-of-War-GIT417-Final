@@ -64,9 +64,9 @@
     <!-- site navigation -->
     <nav class="topnav">
       <div class="top-wrapper">
-        <button class="site-theme-switch-btn">
-          <i class="fa-solid fa-sun active"></i>
-          <i class="fa-solid fa-moon"></i>
+        <button class="site-theme-switch-btn" aria-label="Toggle theme">
+          <i class="fa-solid fa-sun active" aria-hidden="true"></i>
+          <i class="fa-solid fa-moon" aria-hidden="true"></i>
         </button>
         <a href="#" class="logo-link">
           <img
@@ -76,8 +76,8 @@
             decoding="async"
           />
         </a>
-        <button class="shopping-cart">
-          <i class="fa-solid fa-cart-shopping active"></i>
+        <button class="shopping-cart" aria-label="Shopping cart">
+          <i class="fa-solid fa-cart-shopping active" aria-hidden="true"></i>
         </button>
       </div>
       <hr />
@@ -108,12 +108,12 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <button class="shopping-cart">
-        <i class="fa-solid fa-cart-shopping active"></i>
+      <button class="shopping-cart" aria-label="Shopping cart">
+        <i class="fa-solid fa-cart-shopping active" aria-hidden="true"></i>
       </button>
-      <button class="menu-control-btn">
-        <i class="fa-solid fa-bars active"></i>
-        <i class="fa-solid fa-xmark"></i>
+      <button class="menu-control-btn" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars active" aria-hidden="true"></i>
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
       </button>
     </nav>
 
@@ -351,7 +351,9 @@
           <h3 class="game-title">GOD OF WAR</h3>
           <div class="buttons-container">
             <button class="btn btn-outline game-info">Game Info</button>
-            <button class="btn btn-outline">Add to Cart</button>
+            <button class="btn btn-outline cart-btn">
+              <span>Add to Cart</span><span>$19.99 USD</span>
+            </button>
           </div>
         </div>
 
@@ -368,7 +370,9 @@
           <h3 class="game-title">GOD OF WAR: RAGNAROK</h3>
           <div class="buttons-container">
             <button class="btn btn-outline game-info">Game Info</button>
-            <button class="btn btn-outline">Add to Cart</button>
+            <button class="btn btn-outline cart-btn">
+              <span>Add to Cart</span><span>$69.99 USD</span>
+            </button>
           </div>
         </div>
 
@@ -901,6 +905,7 @@
 
           <form id="contact-form">
             <div class="form-group">
+              <label for="fullname">Full Name</label>
               <input
                 type="text"
                 id="fullname"
@@ -910,31 +915,38 @@
             </div>
 
             <div class="form-group">
+              <label for="email">Email</label>
               <input type="email" id="email" placeholder="Email" required />
             </div>
 
             <div class="form-group">
+              <label for="phone">Phone Number</label>
               <input type="tel" id="phone" placeholder="Phone Number" />
             </div>
 
             <div class="form-group">
+              <label for="message">Message</label>
               <textarea
                 id="message"
                 rows="5"
-                placeholder="Messsage"
+                placeholder="Message"
                 required
               ></textarea>
             </div>
 
             <div class="form-footer">
               <p class="notification-pref">
-                Be notified Through: Phone or Email
+                Be notified Through: <span id="notification-target">Email</span>
               </p>
 
               <div class="toggle-container">
-                <p class="toggle-text">Email</p>
                 <label class="switch">
-                  <input type="checkbox" id="notify-toggle" />
+                  <!-- Added aria-label to describe the toggle switch's current function -->
+                  <input
+                    type="checkbox"
+                    id="notify-toggle"
+                    aria-label="Notification preference toggle"
+                  />
                   <span class="slider round"></span>
                 </label>
               </div>

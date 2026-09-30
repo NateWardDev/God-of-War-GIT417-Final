@@ -1,28 +1,25 @@
+"use strict";
 // Light / Dark page controls
-const lightDarkModeBtnToggle = document.querySelectorAll(
-  ".site-theme-switch-btn",
-);
+const lightDarkModeBtnToggle = document.querySelector(".site-theme-switch-btn");
 
-lightDarkModeBtnToggle.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const body = document.body;
-    const currentTheme = body.getAttribute("data-theme");
+lightDarkModeBtnToggle.addEventListener("click", () => {
+  const body = document.body;
+  const currentTheme = body.getAttribute("data-theme");
 
-    const icons = btn.querySelectorAll("i");
-    // Toggle the 'active' class on each child
-    icons.forEach((icon) => {
-      icon.classList.toggle("active");
-    });
-
-    // Toggle between dark and light
-    if (currentTheme === "dark") {
-      body.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-    } else {
-      body.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-    }
+  const icons = lightDarkModeBtnToggle.querySelectorAll("i");
+  // Toggle the 'active' class on each child
+  icons.forEach((icon) => {
+    icon.classList.toggle("active");
   });
+
+  // Toggle between dark and light
+  if (currentTheme === "dark") {
+    body.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
+  } else {
+    body.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
+  }
 });
 
 // Optional: Load saved theme preference on page load
@@ -186,4 +183,19 @@ document.addEventListener("DOMContentLoaded", () => {
       dot.classList.add("active");
     });
   });
+});
+
+// contact form required JS
+const toggleInput = document.getElementById("notify-toggle");
+const notificationTarget = document.getElementById("notification-target");
+
+toggleInput.addEventListener("change", function () {
+  if (this.checked) {
+    notificationTarget.textContent = "Phone";
+    // Optional: Update aria-label dynamically for screen readers if needed
+    this.setAttribute("aria-label", "Switch notification method back to Email");
+  } else {
+    notificationTarget.textContent = "Email";
+    this.setAttribute("aria-label", "Switch notification method to Phone");
+  }
 });
