@@ -2,11 +2,12 @@
 
 :root {
   /* Primary Colors */
+  --color-nornir-gold: #d4af37;
   --color-nordic-blue: #1c5a7b;
-  --color-gow-red: #542021;
-  --color-purple: #492747;
-  --color-raven-black: #0d0d0d;
-  --color-frost-white: #f5f5f5;
+  --color-gow-red: #7b3031;
+  --color-laufey-purple: #5a2a70;
+  --accent-blue: #3682b1;
+  --accent-red: #c61919;
 
   /* Typography */
   --font-heading: "Cinzel", serif;
@@ -26,10 +27,6 @@
   --text-white-always: #fff;
   --text-black: #000;
   --text-black-always: #000;
-  --accent-red: #c61919;
-  --accent-blue: #30739d;
-  --color-nornir-gold: #d4af37;
-  --border-color: #5a3e2b;
   --light-line: #ffffff30;
 }
 
@@ -73,8 +70,9 @@ section {
 .img-wrapper {
   width: 100%;
   height: 100%;
+  display: block;
   img {
-    display: flex;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -360,6 +358,7 @@ nav {
 header {
   position: relative;
   height: 95dvh;
+  max-height: 1000px;
   width: 100dvw;
   overflow: hidden;
   .img-wrapper {
@@ -507,7 +506,7 @@ header {
             background: var(--color-nordic-blue);
           }
           &.laufey {
-            background: var(--color-purple);
+            background: var(--color-laufey-purple);
           }
         }
       }
@@ -565,7 +564,7 @@ header {
         background: linear-gradient(
           to right,
           var(--color-gow-red) 0%,
-          #542021cc 15%,
+          #7b3031cc 15%,
           transparent 35%
         );
       }
@@ -577,13 +576,13 @@ header {
         background: linear-gradient(
           to right,
           var(--color-nordic-blue) 0%,
-          #1c5a7bcc 15%,
+          #30739dcc 15%,
           transparent 35%
         );
       }
     }
     &.card-purple {
-      background-color: var(--color-purple);
+      background-color: var(--color-laufey-purple);
       /* flip the image */
       .img-wrapper {
         img {
@@ -594,8 +593,8 @@ header {
       .img-wrapper::after {
         background: linear-gradient(
           to right,
-          var(--color-purple) 0%,
-          #492747cc 15%,
+          var(--color-laufey-purple) 0%,
+          #5a2a70cc 15%,
           transparent 35%
         );
       }
@@ -660,7 +659,7 @@ header {
           background: var(--color-nordic-blue);
         }
         &.btn-purple {
-          background: var(--color-purple);
+          background: var(--color-laufey-purple);
         }
       }
     }
@@ -845,7 +844,7 @@ header {
         background-color: var(--color-nordic-blue);
       }
       &.badge-upcoming {
-        background-color: var(--color-purple);
+        background-color: var(--color-laufey-purple);
       }
     }
   }
@@ -921,6 +920,7 @@ header {
         border-radius: var(--radius-sm);
         background: transparent;
         cursor: pointer;
+        color: var(--text-white-always);
 
         &:hover {
           color: var(--text-white-always);
@@ -928,7 +928,7 @@ header {
         }
 
         &.active {
-          color: var(--text-white);
+          color: var(--text-white-always);
           background-color: var(--color-nornir-gold);
           color: var(--text-black);
         }
@@ -1064,6 +1064,7 @@ header {
     height: auto;
   }
   p {
+    color: var(--text-white-always);
     position: absolute;
     bottom: 0.5rem;
     font-size: 0.9rem;
@@ -1082,8 +1083,33 @@ header {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      font-family: var(--font-body);
       .section-title {
         margin-bottom: 0.5rem;
+      }
+      /* for the submit info */
+      .success-box {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        #submitted-info-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          font-size: 1rem;
+        }
+        .another-message-btn {
+          margin-top: 0.5rem;
+          align-self: flex-start;
+          border: 1px solid var(--light-line);
+          padding: 0.6rem 2.5rem;
+          color: var(--text-white);
+          border-radius: var(--radius-sm);
+          &:hover {
+            color: var(--text-black);
+            background-color: var(--color-nornir-gold);
+          }
+        }
       }
       #contact-form {
         display: flex;
@@ -1093,9 +1119,10 @@ header {
           input,
           textarea {
             width: 100%;
-            background: transparent;
+            background: var(--bg-primary);
             border: 1px solid var(--light-line);
             border-radius: var(--radius-sm);
+            color: var(--text-white);
             padding: 0.9rem 1.2rem;
             outline: none;
             transition: border-color 0.3s ease;
@@ -1103,8 +1130,55 @@ header {
               border-color: var(--color-nornir-gold);
             }
           }
+          .error-msg {
+            color: var(--accent-red);
+          }
           textarea {
             resize: vertical;
+          }
+          .radio-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+
+            label {
+              position: relative;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              min-width: 120px;
+              padding: 0.75rem 1.25rem;
+
+              color: var(--text-white);
+              border: 1px solid var(--light-line);
+              border-radius: var(--radius-sm);
+              background: rgba(255, 255, 255, 0.02);
+
+              cursor: pointer;
+              transition:
+                border-color 0.3s ease,
+                background-color 0.3s ease,
+                color 0.3s ease,
+                box-shadow 0.3s ease,
+                transform 0.2s ease;
+
+              &:hover {
+                border-color: var(--color-nornir-gold);
+                background: rgba(212, 175, 55, 0.08);
+              }
+
+              input {
+                position: absolute;
+                opacity: 0;
+                pointer-events: none;
+              }
+
+              &:has(input:checked) {
+                color: var(--text-black);
+                background: var(--color-nornir-gold);
+                border-color: var(--color-nornir-gold);
+              }
+            }
           }
         }
         .form-footer {
@@ -1352,6 +1426,7 @@ header {
       flex-direction: column;
       gap: 0.25rem;
       opacity: 0.75;
+      padding: 0 0.5rem;
 
       p {
         font-size: 0.85rem;

@@ -185,17 +185,135 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// contact form required JS
-const toggleInput = document.getElementById("notify-toggle");
-const notificationTarget = document.getElementById("notification-target");
+// --- CONTACT FORM VALIDATION & OBJECT CREATION ---
+const contactForm = document.getElementById("contact-form");
 
-toggleInput.addEventListener("change", function () {
-  if (this.checked) {
-    notificationTarget.textContent = "Phone";
-    // Optional: Update aria-label dynamically for screen readers if needed
-    this.setAttribute("aria-label", "Switch notification method back to Email");
-  } else {
-    notificationTarget.textContent = "Email";
-    this.setAttribute("aria-label", "Switch notification method to Phone");
+contactForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Clear previous error messages
+  document
+    .querySelectorAll(".error-msg")
+    .forEach((el) => (el.textContent = ""));
+
+  // Grab field values
+  const fullName = document.getElementById("fullname").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  const prefRadio = document.querySelector(
+    'input[name="contact-pref"]:checked',
+  );
+
+  const preference = prefRadio ? prefRadio.value : "";
+
+  let isValid = true;
+
+  // Regex patterns
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const phoneRegex =
+    /^(?:\+?[1-9]\d{1,14}|\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})$/;
+
+  // Validate Full Name
+  if (fullName === "") {
+    document.getElementById("error-fullname").textContent =
+      "Full name is required.";
+    isValid = false;
   }
+
+  // Validate Preferred Contact Method
+  if (preference === "") {
+    document.getElementById("error-pref").textContent =
+      "Please choose email or phone as your preferred contact method.";
+    isValid = false;
+  }
+
+  // Validate Email
+  if (email === "") {
+    if (preference === "email") {
+      document.getElementById("error-email").textContent =
+        "Email is required since you chose email preference.";
+      isValid = false;
+    }
+  } else if (!emailRegex.test(email)) {
+    document.getElementById("error-email").textContent =
+      "Please enter a valid email address (e.g., name@domain.com).";
+    isValid = false;
+  }
+
+  // Validate Phone
+  if (preference === "phone") {
+    if (phone === "") {
+      document.getElementById("error-phone").textContent =
+        "Phone number is required when phone contact is selected.";
+      isValid = false;
+    } else if (!phoneRegex.test(phone)) {
+      document.getElementById("error-phone").textContent =
+        "Please enter a valid phone number format.";
+      isValid = false;
+    }
+  } else if (phone !== "" && !phoneRegex.test(phone)) {
+    document.getElementById("error-phone").textContent =
+      "Please enter a valid phone number format.";
+    isValid = false;
+  }
+
+  // Validate Comments / Message
+  if (message === "") {
+    document.getElementById("error-message").textContent =
+      "Comments/message are required.";
+    isValid = false;
+  }
+
+  // If valid, create customer object and display success info
+  if (isValid) {
+    const customer = {
+      fullName: fullName,
+      email: email ? email : "N/A",
+      phone: phone ? phone : "N/A",
+      message: message,
+      preference: preference,
+    };
+
+    // Hide form and show success message with object data
+    contactForm.style.display = "none";
+
+    const successBox = document.getElementById("form-success-box");
+    const infoList = document.getElementById("submitted-info-list");
+
+    infoList.innerHTML = `
+      <li><strong>Name:</strong> ${customer.fullName}</li>
+      <li><strong>Email:</strong> ${customer.email}</li>
+      <li><strong>Phone:</strong> ${customer.phone}</li>
+      <li><strong>Preferred Contact:</strong> ${customer.preference}</li>
+      <li><strong>Message:</strong> ${customer.message}</li>
+    `;
+
+    successBox.style.display = "flex";
+
+    // Reset form data internally
+    contactForm.reset();
+  }
+});
+
+const anotherMessageButton = document.querySelector(".another-message-btn");
+const successBox = document.getElementById("form-success-box");
+
+anotherMessageButton.addEventListener("click", function () {
+  // Hide success message and show the form again
+  successBox.style.display = "none";
+  contactForm.style.display = "flex";
+
+  // Reset the form for a new message
+  contactForm.reset();
+
+  // Clear any previous error messages
+  document
+    .querySelectorAll(".error-msg")
+    .forEach((el) => (el.textContent = ""));
+
+  // Place focus on the first field
+  document.getElementById("fullname").focus();
 });
