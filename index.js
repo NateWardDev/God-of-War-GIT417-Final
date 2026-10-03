@@ -317,3 +317,141 @@ anotherMessageButton.addEventListener("click", function () {
   // Place focus on the first field
   document.getElementById("fullname").focus();
 });
+
+// --- SHOPPING CART & COST CALCULATOR LOGIC ---
+let cart = [];
+
+// Cache DOM elements globally using querySelector
+const cartTriggers = document.querySelectorAll(".shopping-cart");
+const cartPopup = document.querySelector("#cartPopup");
+const cartCloseBtn = document.querySelector(".cart-close-btn");
+const container = document.querySelector("#cart-items-container");
+const subtotalEl = document.querySelector("#cart-subtotal");
+const taxEl = document.querySelector("#cart-tax");
+const totalEl = document.querySelector("#cart-total");
+const checkoutMsg = document.querySelector(".checkout-msg-box");
+const checkoutBtn = document.querySelector("#checkout-btn");
+
+// Toggle Cart Popup Open/Close
+cartTriggers.forEach((btn) =>
+  btn.addEventListener("click", () => cartPopup.classList.add("open")),
+);
+cartCloseBtn.addEventListener("click", () =>
+  cartPopup.classList.remove("open"),
+);
+cartPopup.addEventListener("click", (e) => {
+  if (e.target === cartPopup) cartPopup.classList.remove("open");
+});
+
+// Grab product items from the #games section dynamically
+document.querySelectorAll(".saga-card").forEach((card) => {
+  const title = card.querySelector(".game-title").textContent;
+  const price = parseFloat(
+    card
+      .querySelector(".cart-btn span:last-child")
+      .textContent.replace(/[^0-9.]/g, ""),
+  );
+
+  card.querySelector(".cart-btn").addEventListener("click", () => {
+    if (cart.some((item) => item.name === title)) {
+      checkoutMsg.style.display = "block";
+      checkoutMsg.innerHTML = `<p>"${title}" is already in your cart!</p>`;
+      cartPopup.classList.add("open");
+      return;
+    }
+
+    cart.push({ name: title, price: price });
+    updateCartDisplay();
+    cartPopup.classList.add("open");
+  });
+});
+
+function updateCartDisplay() {
+  updateCartCount();
+
+  if (!checkoutMsg.innerHTML.includes("already in your cart")) {
+    checkoutMsg.style.display = "none";
+  }
+
+  if (cart.length === 0) {
+    container.innerHTML = `<p class="empty-cart-msg">Your cart is currently empty.</p>`;
+    subtotalEl.textContent = "$0.00";
+    taxEl.textContent = "$0.00";
+    totalEl.textContent = "$0.00";
+    return;
+  }
+
+  // Render items
+  container.innerHTML = "";
+  let subtotal = 0;
+
+  cart.forEach((item, index) => {
+    subtotal += item.price;
+    const row = document.createElement("div");
+    row.className = "cart-item-row";
+    row.innerHTML = `
+      <span>${item.name}</span>
+      <div class="cart-item-details">
+        <span>$${item.price.toFixed(2)}</span>
+        <button class="cart-item-remove" data-index="${index}" title="Remove item">&times;</button>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+
+  // Attach event listeners to remove buttons
+  container.querySelectorAll(".cart-item-remove").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      cart.splice(parseInt(e.target.dataset.index), 1);
+      updateCartDisplay();
+    });
+  });
+
+  // Calculations
+  const tax = subtotal * 0.08;
+  subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+  taxEl.textContent = `$${tax.toFixed(2)}`;
+  totalEl.textContent = `$${(subtotal + tax).toFixed(2)}`;
+}
+
+// Function to update item count on all cart buttons/icons
+function updateCartCount() {
+  cartTriggers.forEach((btn) => {
+    let badge = btn.querySelector(".cart-count-badge");
+    if (cart.length > 0) {
+      if (!badge) {
+        badge = document.createElement("span");
+        badge.className = "cart-count-badge";
+        btn.appendChild(badge);
+      }
+      badge.textContent = cart.length;
+    } else if (badge) {
+      badge.remove();
+    }
+  });
+}
+
+// Checkout button handler
+checkoutBtn.addEventListener("click", () => {
+  if (cart.length === 0) {
+    checkoutMsg.style.display = "block";
+    checkoutMsg.innerHTML = `<p>Your cart is empty! Please add a game before checking out.</p>`;
+    return;
+  }
+
+  const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+  const grandTotal = subtotal + subtotal * 0.08;
+
+  checkoutMsg.style.display = "block";
+  checkoutMsg.innerHTML = `
+    <h4>Thank You for Your Order!</h4>
+    <p>Total cost: <strong>$${grandTotal.toFixed(2)}</strong> (Includes tax).</p>
+  `;
+
+  cart = [];
+  updateCartCount();
+  subtotalEl.textContent = "$0.00";
+  taxEl.textContent = "$0.00";
+  totalEl.textContent = "$0.00";
+  container.innerHTML = `<p class="empty-cart-msg">Your cart is currently empty.</p>`;
+});

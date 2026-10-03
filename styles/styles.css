@@ -354,6 +354,20 @@ nav {
   }
 }
 
+/* for shopping cart item numbers */
+.shopping-cart {
+  position: relative;
+  .cart-count-badge {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: var(--text-white);
+    font-size: 0.85rem;
+    font-weight: bold;
+    line-height: 1;
+  }
+}
+
 /* ----- header ----- */
 header {
   position: relative;
@@ -1008,6 +1022,154 @@ header {
   }
 }
 
+/* ----- shopping cart overlay sytles ------ */
+.cart-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .cart-popup-content {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--light-line);
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 750px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    max-height: 95dvh;
+    overflow-y: auto;
+
+    h3 {
+      text-align: center;
+      border-bottom: 1px solid var(--light-line);
+      padding-bottom: 1rem;
+    }
+
+    .cart-close-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--text-white);
+      font-size: 2rem;
+      cursor: pointer;
+      &:hover {
+        color: var(--color-nornir-gold);
+      }
+    }
+
+    #cart-items-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .cart-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff13;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--light-line);
+
+      .cart-item-details {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .cart-item-remove {
+          background: none;
+          border: none;
+          color: var(--text-white);
+          font-size: 1.5rem;
+          cursor: pointer;
+          font-weight: bold;
+          transition: transform 0.2s;
+
+          &:hover {
+            transform: scale(1.2);
+            color: var(--color-nornir-gold);
+          }
+        }
+      }
+    }
+
+    .cart-summary {
+      border-top: 1px solid var(--light-line);
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1rem;
+
+        &.total-row {
+          font-weight: 700;
+          font-size: 1.2rem;
+          color: var(--color-nornir-gold);
+          border-top: 1px dashed var(--light-line);
+          padding-top: 0.5rem;
+          margin-top: 0.25rem;
+        }
+      }
+    }
+
+    .cart-actions {
+      display: flex;
+      justify-content: stretch;
+
+      button {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: var(--radius-sm);
+        background: var(--color-gow-red);
+        color: var(--text-white-always);
+        &:hover {
+          background: var(--color-nornir-gold);
+          color: var(--text-black-always);
+        }
+      }
+    }
+
+    .checkout-msg-box {
+      display: none;
+      border: 1px solid var(--light-line);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      h4 {
+        color: var(--color-nornir-gold);
+      }
+      p {
+        color: var(--text-white);
+      }
+    }
+  }
+}
+
 /* ----- Gallery Section Styling ----- */
 .gallery-section {
   .section-title {
@@ -1037,7 +1199,8 @@ header {
     }
   }
 }
-/* popup images */
+
+/* ----- popup images ----- */
 .gallery-lightbox {
   position: fixed;
   inset: 0;
@@ -1683,7 +1846,7 @@ textarea:focus-visible {
 /* ----- 768px ----- */
 @media screen and (max-width: 768px) {
   section {
-    padding: 3.5rem 2rem;
+    padding: 3.5rem 1.5rem;
   }
 
   h1 {

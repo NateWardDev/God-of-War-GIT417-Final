@@ -389,7 +389,9 @@
           <h3 class="game-title">GOD OF WAR: LAUFEY</h3>
           <div class="buttons-container">
             <button class="btn btn-outline game-info">Game Info</button>
-            <button class="btn btn-disabled" disabled>Coming Soon</button>
+            <button class="btn btn-outline cart-btn">
+              <span>Pre-Order</span><span>$79.99</span>
+            </button>
           </div>
         </div>
       </div>
@@ -507,7 +509,7 @@
 
         <div class="popup-header">
           <h3 class="popup-title">GOD OF WAR: LAUFEY</h3>
-          <p class="badge badge-upcoming">Coming Soon</p>
+          <p class="badge badge-upcoming">Release Date: February 16, 2027</p>
         </div>
 
         <div class="popup-body">
@@ -529,19 +531,55 @@
               <span class="spec-value">TBD (Estimated 20-30 Hours)</span>
             </p>
             <p class="spec-item">
-              <span class="spec-label">Price:</span>
-              <span class="spec-value">Pre-Order Pricing Coming Soon</span>
+              <span class="spec-label">Current Price:</span>
+              <span class="spec-value">$79.99 USD</span>
             </p>
             <p class="spec-item">
               <span class="spec-label">Platforms:</span>
               <span class="spec-value">PlayStation 5 Exclusive</span>
             </p>
             <p class="spec-item">
-              <span class="spec-label">Release Window:</span>
-              <span class="spec-value">To Be Announced</span>
+              <span class="spec-label">ESRB Rating:</span>
+              <span class="spec-value"
+                >M for Mature (Intense Violence, Strong Language)</span
+              >
             </p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Shopping Cart Modal Popup -->
+    <div class="cart-popup-overlay" id="cartPopup">
+      <div class="cart-popup-content">
+        <button class="popup-close cart-close-btn">&times;</button>
+        <h3>Your Shopping Cart</h3>
+
+        <div id="cart-items-container">
+          <p class="empty-cart-msg">Your cart is currently empty.</p>
+        </div>
+
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Estimated Tax (8%):</span>
+            <span id="cart-tax">$0.00</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Total Price:</span>
+            <span id="cart-total">$0.00</span>
+          </div>
+        </div>
+
+        <div class="cart-actions">
+          <button class="btn btn-red" id="checkout-btn">Check Out</button>
+        </div>
+
+        <!-- Checkout / Notification Message Area -->
+        <div class="checkout-msg-box"></div>
       </div>
     </div>
 
@@ -755,7 +793,7 @@
             />
             <img
               src="images/gallery1.webp"
-              alt="Kratos and Atreus exploring a snowy realm landscape with mystical trees"
+              alt="Kratos holding a shield in combat with fiery sparks flying in the background"
               decoding="async"
               loading="lazy"
             />
@@ -771,7 +809,7 @@
             />
             <img
               src="images/gallery2.webp"
-              alt="A dragon breathing fire during combat in God of War"
+              alt="Kratos fighting an enemy using the Blades of Chaos with fiery chains"
               decoding="async"
               loading="lazy"
             />
@@ -787,7 +825,7 @@
             />
             <img
               src="images/gallery3.webp"
-              alt="Kratos talking to Mimir's head trapped inside a tree trunk"
+              alt="Kratos standing on a cliff overlooking a lush green valley with a structure in the distance"
               decoding="async"
               loading="lazy"
             />
@@ -803,7 +841,7 @@
             />
             <img
               src="images/gallery4.webp"
-              alt="Kratos facing a massive boss creature in a snowy mountain area"
+              alt="A large blue reptilian creature with glowing details under a cloudy sky"
               decoding="async"
               loading="lazy"
             />
@@ -819,7 +857,7 @@
             />
             <img
               src="images/gallery5.webp"
-              alt="Intense combat scene inside a dark cave environment"
+              alt="Kratos and Atreus exploring a mystical purple and blue realm with floating debris"
               decoding="async"
               loading="lazy"
             />
@@ -835,7 +873,7 @@
             />
             <img
               src="images/gallery6.webp"
-              alt="Kratos and Atreus walking through a snowy landscape past a massive stone monument"
+              alt="Kratos holding a shield facing multiple combatants in a snowy landscape"
               decoding="async"
               loading="lazy"
             />
@@ -851,7 +889,7 @@
             />
             <img
               src="images/gallery7.webp"
-              alt="Vibrant red and golden foliage in a mystical realm"
+              alt="Kratos in combat using an ice axe against an agile foe in a snowy environment"
               decoding="async"
               loading="lazy"
             />
@@ -867,7 +905,7 @@
             />
             <img
               src="images/gallery8.webp"
-              alt="Kratos and Atreus interacting with a glowing blue deer in the snow"
+              alt="Kratos looking up at a massive stone statue flanked by spears"
               decoding="async"
               loading="lazy"
             />
@@ -883,7 +921,7 @@
             />
             <img
               src="images/gallery9.webp"
-              alt="Magical purple lightning and energy bursting through a lush forest clearing"
+              alt="Kratos and Atreus battling a large creature carrying a glowing log weapon"
               decoding="async"
               loading="lazy"
             />
