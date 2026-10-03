@@ -315,7 +315,6 @@ nav {
     position: relative;
     i {
       transition: 0.2s ease-in-out;
-      transition-property: color opacity;
       user-select: none;
       pointer-events: none;
       position: absolute;
@@ -1945,7 +1944,6 @@ textarea:focus-visible {
           padding: 0.75rem 1.25rem;
           white-space: nowrap;
           flex-shrink: 0; /* Prevents buttons from squishing */
-          scroll-snap-align: 1rem; /* Snaps each button into view */
         }
       }
       /* Right Content Display Area */

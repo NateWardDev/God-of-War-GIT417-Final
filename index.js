@@ -442,9 +442,13 @@ checkoutBtn.addEventListener("click", () => {
   const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
   const grandTotal = subtotal + subtotal * 0.08;
 
+  // Extract all item names into a comma-separated string
+  const itemNames = cart.map((item) => item.name).join(", ");
+
   checkoutMsg.style.display = "block";
   checkoutMsg.innerHTML = `
     <h4>Thank You for Your Order!</h4>
+    <p><strong>Items ordered:</strong> ${itemNames}</p>
     <p>Total cost: <strong>$${grandTotal.toFixed(2)}</strong> (Includes tax).</p>
   `;
 
